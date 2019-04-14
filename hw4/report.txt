@@ -1,0 +1,40 @@
+1. I modify the reduction.cu into inner_product.cu. And in order to use the above modification. For matrix-vector multiplication, I extend the inner_product idea. The matrix-vector operation can be viewed as each row of the matrix multiply the vector is a inner-product operation. So I apply inner-product operation on to each row of the matrix and store them into a result vector. The following is the matrix-vector result to run on different GPU(cuda1, cuda2, cuda3, cuda4, cuda5). And I set the size N = (1UL<<11)
+
+cuda1: Two GeForce GTX TITAN Black (6 GB memory each)
+GPU Bandwidth = 0.055232 GB/s
+
+cuda2: Two GeForce RTX 2080 Ti (11 GB memory each)
+GPU Bandwidth = 0.005677 GB/s
+
+cuda3: Two TITAN V (12 GB memory each)
+GPU Bandwidth = 0.002736 GB/s
+
+cuda4: Two GeForce GTX TITAN X (12 GB memory each)
+GPU Bandwidth = 0.002398 GB/s
+
+cuda5: Two GeForce GTX TITAN Z (12 GB memory each)
+GPU Bandwidth = 0.034948 GB/s
+
+In my implementation, GPU version is slower than OpenMP version. It's because that in my implementation, I have to do memory copy between GPU and CPU for many times, which is a very expensive cost. But if we just looked at the inner-product part, GPU performance is better than CPU.
+
+2. Jacobi 2D, I modify the code from assignment 2(OpenMP version) into CUDA version. The algorithm is completely the same and the result is also the same. And I set the size N = 480. The following is the result of running on different GPU.
+
+cuda1: Two GeForce GTX TITAN Black (6 GB memory each)
+Total time taken:   0.595837 seconds
+
+cuda2: Two GeForce RTX 2080 Ti (11 GB memory each)
+Total time taken:   0.975477 seconds
+
+cuda3: Two TITAN V (12 GB memory each)
+Total time taken:   0.695691 seconds
+
+cuda4: Two GeForce GTX TITAN X (12 GB memory each)
+Total time taken:   2.135707 seconds
+
+cuda5: Two GeForce GTX TITAN Z (12 GB memory each)
+Total time taken:   0.693534 seconds
+
+3. In our final project, we'd like to implement the application "Painterly Rendering with Curved Strokes of Multiple Size" in Parallel using OpenMP, and this is the link to the paper: https://www.mrl.nyu.edu/publications/painterly98/hertzmann-siggraph98.pdf
+Here is the idea:
+In each layer, at each pixel we have to sum the error in a grid and then calculate the gradient at the largest error point in order to get the direction stroke. In this part, we'd like to do it in different threads. 
+By the way, there are two people in our team, Connie Chou and Emily Huang.
