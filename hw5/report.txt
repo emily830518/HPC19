@@ -1,0 +1,62 @@
+
+1. MPI ring communication: (Note: the following tests are running on CIMS crunchy6)
+(1) int_ring.cpp: I set N = 100000 and compute the latency with different processors:
+	
+	[sth351@crunchy6]$ mpirun -np 2 ./int_ring
+	Process 1 received token 99999 from process 0
+	Process 0 received token 100000 from process 1
+	int_ring latency: 1.205525e-03 ms
+
+	[sth351@crunchy6]$ mpirun -np 3 ./int_ring
+	Process 1 received token 299997 from process 0
+	Process 2 received token 299998 from process 1
+	Process 0 received token 300000 from process 2
+	int_ring latency: 2.184042e-03 ms
+
+	[sth351@crunchy6]$ mpirun -np 4 ./int_ring
+	Process 1 received token 599994 from process 0
+	Process 2 received token 599995 from process 1
+	Process 3 received token 599997 from process 2
+	Process 0 received token 600000 from process 3
+	int_ring latency: 2.409585e-03 ms
+
+(2) int_array_ring.cpp: Then, I modify my code into sending an int array in a ring, I send an int array that the size is 500000, so the total size is 4byte*500000=2Mbyte. But in order to accelerate the execution, I set N=1(No repeat). And the following are the results(bandwidth and latency) with different processors:
+
+	[sth351@crunchy6]$ mpirun -np 2 ./int_array_ring
+	int_array_ring latency: 1.987440e+00 ms
+	int_array_ring bandwidth: 2.515799e-01 GB/s
+
+	[sth351@crunchy6]$ mpirun -np 3 ./int_array_ring
+	int_array_ring latency: 3.036354e+00 ms
+	int_array_ring bandwidth: 1.646712e-01 GB/s
+	
+	[sth351@crunchy6]$ mpirun -np 4 ./int_array_ring
+	int_array_ring latency: 4.596231e+00 ms
+	int_array_ring bandwidth: 1.087848e-01 GB/s
+
+	[sth351@crunchy6]$ mpirun -np 5 ./int_array_ring
+	int_array_ring latency: 5.274591e+00 ms
+	int_array_ring bandwidth: 9.479408e-02 GB/s
+
+2.
++--------------------------------------------------------------------------------------------------------------------------------+
+| Project: Parallelize Painterly Rendering with Curved Brush Strokes of Multiple Sizes                                           |
++--------------------------------------------------------------------------------------------------------------------------------+
+| Week      | Work                                                                                   | Who           | Checklist |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
+| 4/15-4/18 | Read paper and think about the algorithm                                               | Emily, Connie |     V     |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
+| 4/19-4/21 | Implement Sobel operator, paint and stroke algorithm in C++ and OpenCV(serial version) | Emily         |     V     |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
+| 4/19-4/21 | Implement Gaussian Filter and parallelize with OpenMP and C++                          | Connie        |     V     |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
+| 4/24-4/28 | Study how to paint the result on canvas and implement it in OpenCV                     | Emily         |           |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
+| 4/24-4/28 | Parallelize Sobel operator and stroke part from serial version with OpenMP             | Connie        |           |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
+| 4/27-4/28 | If complete before time, try to implement with CUDA and compare the performance.       | Emily,Connie  |           |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
+| 4/28-5/1  | Final Optimization. Run tests and check results                                        | Emily,Connie  |           |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
+| 5/1-5/6   | Work on presentation slides and report                                                 | Emily,Connie  |           |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
