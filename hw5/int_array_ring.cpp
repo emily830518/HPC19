@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define N 1
+#define N 1000
 
 int main(int argc, char** argv) {
   // Initialize the MPI environment
@@ -44,6 +44,6 @@ int main(int argc, char** argv) {
   MPI_Barrier(MPI_COMM_WORLD);
   tt = MPI_Wtime() - tt;
   if (!world_rank) printf("int_array_ring latency: %e ms\n", tt/N * 1000);
-  if (!world_rank) printf("int_array_ring bandwidth: %e GB/s\n", (500000*N)/tt/1e9);
+  if (!world_rank) printf("int_array_ring bandwidth: %e GB/s\n", (500000*sizeof(int)*N)/tt/1e9);
   MPI_Finalize();
 }

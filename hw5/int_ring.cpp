@@ -45,5 +45,6 @@ int main(int argc, char** argv) {
   MPI_Barrier(MPI_COMM_WORLD);
   tt = MPI_Wtime() - tt;
   if (!world_rank) printf("int_ring latency: %e ms\n", tt/N * 1000);
+  if (!world_rank) printf("int_array_ring bandwidth: %e GB/s\n", (1*sizeof(int)*N)/tt/1e9);
   MPI_Finalize();
 }
