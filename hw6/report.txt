@@ -1,0 +1,43 @@
+0.
++--------------------------------------------------------------------------------------------------------------------------------+
+| Project: Parallelize Painterly Rendering with Curved Brush Strokes of Multiple Sizes                                           |
++--------------------------------------------------------------------------------------------------------------------------------+
+| Week      | Work                                                                                   | Who           | Checklist |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
+| 4/15-4/18 | Read paper and think about the algorithm                                               | Emily, Connie |     V     |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
+| 4/19-4/21 | Implement Sobel operator, paint and stroke algorithm in C++ and OpenCV(serial version) | Emily         |     V     |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
+| 4/19-4/21 | Implement Gaussian Filter and parallelize with OpenMP and C++                          | Connie        |     V     |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
+| 4/24-4/28 | Study how to paint the result on canvas and implement it in OpenCV                     | Emily         |     V     |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
+| 4/24-4/28 | Parallelize Sobel operator and stroke part from serial version with OpenMP             | Connie        |     V     |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
+| 4/27-4/28 | Compare the performance                                                                | Emily,Connie  |     V     |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
+| 4/28-5/1  | Final Optimization. Run tests and check results                                        | Emily,Connie  |     V     |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
+| 5/1-5/13  | Work on presentation slides and report                                                 | Emily,Connie  |           |
++-----------+----------------------------------------------------------------------------------------+---------------+-----------+
+
+1. Jacobi 2D MPI: I ran my experiments on Prince
+For both studies, I fixed the number of iterations to be 500.
+Strong scaling study: I fixed N = 10000, and timing with different number of processors and then plot as figure1(strong).
+please take a look at figure1(strong).png
+
+Weak scaling study: I fixed Nl = 1000, and timing with different number of processors and then plot as figure2(weak).
+please take a look at figure2(weak).png
+
+
+2. Sample Sort:
+
+I ran my experiment on Prince with 64 cores. The following are results for N = 10^4, 10^5, and 10^6:
+N = 10^4, Time: 0.680617 seconds.
+N = 10^5, Time: 0.854681 seconds.
+N = 10^6, Time: 1.075468 seconds.
+
+And I also do the experiment on crunchy6 for N = 10^4, 10^5, and 10^6:
+N = 10^4, Time: 0.679701 seconds.
+N = 10^5, Time: 1.770967 seconds.
+N = 10^6, Time: 2.600211 seconds.
