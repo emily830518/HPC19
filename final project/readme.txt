@@ -15,4 +15,4 @@ Output:
 Work Assignment:
 	Emily: Implement the whole painterly rendering algorithm, Analysis and Test, Write 
 	report.
-	Connie: Parallelize Emily's implementation, Analysis and Test, Revise report, and 	presentation.
+	Connie: Parallelize Emily's implementation, Analysis and Test, Revise report, and presentation.
